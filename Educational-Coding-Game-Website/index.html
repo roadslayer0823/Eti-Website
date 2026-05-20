@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeQuest - Educational Coding Game</title>
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Shared Background Elements -->
+        <div class="bg-orb orb-1"></div>
+        <div class="bg-orb orb-2"></div>
+        <div class="bg-orb orb-3"></div>
+        <canvas id="star-canvas"></canvas>
+
+
+        <!-- Application Content -->
+        <div id="game-container">
+            <!-- Header -->
+            <header class="glass-header">
+                <div class="header-left">
+                    <button id="btn-back-courses" class="header-btn" title="Back to Courses">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                    <div class="logo">
+                        <i class="fa-solid fa-code"></i> CodeQuest
+                    </div>
+                </div>
+                <div class="header-right">
+                    <!-- <button id="btn-editor" class="header-btn" onclick="openEditor()" title="Open Editor">
+                        <i class="fa-solid fa-edit"></i>
+                    </button> -->
+                    <div id="header-xp-info" class="header-xp-info">
+                        <span class="level-badge">Lvl 1</span>
+                        <span id="header-xp">XP: 0/100</span>
+                    </div>
+                    <div id="session-timer" class="session-timer">
+                        <span class="timer-label">Trial Session Timer:</span>
+                        <span id="time-remaining">--:--</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- COURSE SELECTION VIEW -->
+            <main id="view-course-selection" class="view">
+                <div class="course-selection-container glass-panel">
+                    <div class="course-list-panel">
+                        <h2 class="panel-title">Your Path</h2>
+                        <div id="course-items" class="course-items">
+                            <!-- Injected via JS -->
+                        </div>
+                    </div>
+                    <div class="course-intro-panel">
+                        <div id="course-intro-content" class="intro-content">
+                            <div class="empty-selection">
+                                <i class="fa-solid fa-graduation-cap"></i>
+                                <h3>Select a course to begin</h3>
+                                <p>Each path offers a unique journey in the world of coding.</p>
+                            </div>
+                        </div>
+                        <div class="intro-actions" style="display: none;">
+                            <button id="btn-enter-course" class="btn-primary">Enter Course <i
+                                    class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- View: Map (Stage Selection) -->
+            <main id="view-map" class="view">
+                <div class="map-container glass-panel">
+                    <h1 class="map-title">Select Stage</h1>
+
+                    <!-- Chapter Selector UI -->
+                    <div class="chapter-selector glass-panel">
+                        <button id="btn-prev-chapter" class="btn-chapter"><i
+                                class="fa-solid fa-chevron-left"></i></button>
+                        <div class="chapter-info">
+                            <span id="current-chapter-name">Chapter 1</span>
+                            <small id="chapter-range">Stages 1 - 20</small>
+                        </div>
+                        <button id="btn-next-chapter" class="btn-chapter"><i
+                                class="fa-solid fa-chevron-right"></i></button>
+
+                        <div class="jump-box">
+                            <input type="number" id="input-jump-stage" placeholder="Go to stage..." min="1" max="1000">
+                            <button id="btn-jump-stage" class="btn-primary-sm">Jump</button>
+                        </div>
+                    </div>
+
+                    <div class="stage-nodes-wrapper" id="stage-nodes-wrapper">
+                        <!-- Nodes injected via JS -->
+                    </div>
+                </div>
+            </main>
+
+            <!-- PAYMENT OVERLAY MODAL -->
+            <div id="payment-overlay" class="modal-overlay" style="display: none;">
+                <div class="payment-modal glass-panel">
+                    <div class="payment-header">
+                        <i class="fa-solid fa-lock-open color-primary"></i>
+                        <h2>Unlock Stage</h2>
+                    </div>
+                    <div class="payment-body">
+                        <p id="payment-stage-title">Stage 2: Storing Energy</p>
+                        <div class="price-tag">$1.99</div>
+                        <p class="payment-description">Access full learning content and coding challenges for this
+                            stage. One-time fee, lifetime access.</p>
+                    </div>
+                    <div class="payment-footer">
+                        <button id="btn-cancel-payment" class="btn-icon">Cancel</button>
+                        <button id="btn-pay-now" class="btn-primary">Pay Now <i
+                                class="fa-solid fa-credit-card"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- View: Stage -->
+            <main id="view-stage" class="view">
+                <div class="stage-layout">
+                    <!-- Left Panel: Content / Challenge Instructions -->
+                    <section class="panel-left glass-panel">
+                        <div class="content-header">
+                            <h2 id="stage-title">Stage Title</h2>
+                        </div>
+                        <!-- Mode: Learning Content -->
+                        <div id="learning-content" class="content-body active-mode">
+                        </div>
+                        <!-- Mode: Coding Instructions -->
+                        <div id="coding-instructions" class="content-body">
+                            <h3>Coding Challenge</h3>
+                            <p id="coding-prompt">Instructions go here.</p>
+                            <div class="expected-output-box">
+                                <strong>Expected Output:</strong>
+                                <pre id="expected-output-text"></pre>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Right Panel: MCQ / Console -->
+                    <section class="panel-right glass-panel">
+                        <!-- Mode: MCQ -->
+                        <div id="mcq-container" class="interactive-area active-mode">
+                            <h3 id="mcq-question">Question goes here?</h3>
+                            <div id="mcq-options" class="options-list">
+                            </div>
+                            <div id="mcq-feedback" class="feedback-msg"></div>
+                        </div>
+
+                        <!-- Mode: Python Code Editor -->
+                        <div id="editor-container" class="interactive-area">
+                            <div class="editor-header">
+                                <span><i class="fa-solid fa-code"></i> Python Editor</span>
+                                <button id="btn-run" class="btn-primary">
+                                    <i class="fa-solid fa-play"></i> Run Code
+                                </button>
+                            </div>
+                            <textarea id="code-editor" class="code-textarea" spellcheck="false"></textarea>
+
+                            <div class="console-output-wrapper">
+                                <div class="console-header">Console Output</div>
+                                <pre id="console-output" class="console-box"></pre>
+                            </div>
+                            <div id="editor-feedback" class="feedback-msg"></div>
+                        </div>
+                    </section>
+                </div>
+            </main>
+        </div>
+
+        <!-- AI CHATBOX (Floating) -->
+        <div id="ai-chatbox" class="ai-chatbox glass-panel" style="display: none;">
+            <div class="chat-header">
+                <div class="chat-title">
+                    <i class="fa-solid fa-robot"></i>
+                    <span>AI Assistant</span>
+                </div>
+                <button id="btn-close-chat" class="btn-icon-sm" title="Minimize">
+                    <i class="fa-solid fa-minus"></i>
+                </button>
+            </div>
+            <div id="chat-messages" class="chat-messages">
+                <div class="message ai">
+                    Hello! I'm your AI tutor. Need help with this stage?
+                </div>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" id="chat-input" placeholder="Ask a question..." autocomplete="off">
+                <button id="btn-send-chat" class="btn-primary-sm">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Floating Chat Bubble (When minimized) -->
+        <div id="ai-chat-bubble" class="ai-chat-bubble glass-panel" style="display: none;" title="Open AI Assistant">
+            <i class="fa-solid fa-robot"></i>
+        </div>
+    </div>
+
+    <!-- Load Pyodide (Python runtime in the browser) -->
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.25.1/full/pyodide.js"></script>
+    <!-- Load custom script -->
+    <script src="app.js?v=16"></script>
+</body>
+
+</html>

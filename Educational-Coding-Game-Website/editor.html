@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeQuest Editor - Create Lessons</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/monokai.min.css">
+    <link rel="stylesheet" href="editor.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="bg-orb orb-1"></div>
+        <div class="bg-orb orb-2"></div>
+        <div class="bg-orb orb-3"></div>
+        <canvas id="star-canvas"></canvas>
+
+        <div id="editor-container">
+            <header class="glass-header editor-header">
+                <div class="header-left">
+                    <button id="btn-back-main" class="header-btn" onclick="goToMainSite()">
+                        <i class="fa-solid fa-arrow-left"></i> Back to Eti
+                    </button>
+                    <div class="logo">
+                        <i class="fa-solid fa-compass-drafting"></i>
+                        <span>CodeQuest Lesson Studio</span>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button id="btn-clear-all" class="header-btn btn-danger-outline" onclick="clearAllLessons()" title="Permernantly delete all lessons on server">
+                        <i class="fa-solid fa-trash-can"></i> Clear All
+                    </button>
+                    <button id="btn-save" class="header-btn" onclick="saveLesson()">
+                        <i class="fa-solid fa-save"></i> Save Lesson
+                    </button>
+                </div>
+            </header>
+
+            <main class="editor-main">
+                <div class="editor-shell">
+                    <aside class="editor-sidebar editor-section">
+                        <div class="sidebar-block">
+                            <h2 class="section-title">
+                                <i class="fas fa-info-circle"></i> Lesson Setup
+                            </h2>
+                            <p class="section-subtitle sidebar-subtitle">Start by filling the details. Title updates your live preview automatically.</p>
+                            <div class="form-grid compact-grid">
+                                <div class="form-group full-width">
+                                    <label for="lesson-title">
+                                        Lesson Title *
+                                        <span class="field-hint">Use a short title students can scan quickly</span>
+                                    </label>
+                                    <input type="text" id="lesson-title" placeholder="e.g., Introduction to Variables" required>
+                                </div>
+                                <div class="form-group full-width">
+                                    <label for="lesson-id">
+                                        Lesson ID *
+                                        <span class="field-hint">Unique key such as stage-1 or python-basics-2</span>
+                                    </label>
+                                    <div class="id-load-row">
+                                        <input type="text" id="lesson-id" placeholder="e.g., stage-1" required>
+                                        <button id="btn-load-lesson" type="button" class="btn btn-secondary" onclick="window.lessonEditor.loadLessonById()">Load</button>
+                                    </div>
+                                </div>
+                                <div class="form-group full-width">
+                                    <label for="lesson-difficulty">
+                                        Difficulty Level
+                                        <span class="field-hint">Pick the intended student level</span>
+                                    </label>
+                                    <select id="lesson-difficulty">
+                                        <option value="1">⭐ Beginner</option>
+                                        <option value="2">⭐⭐ Easy</option>
+                                        <option value="3">⭐⭐⭐ Medium</option>
+                                        <option value="4">⭐⭐⭐⭐ Hard</option>
+                                        <option value="5">⭐⭐⭐⭐⭐ Expert</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sidebar-block quick-guide">
+                            <h3><i class="fa-solid fa-route"></i> Recommended Flow</h3>
+                            <ol>
+                                <li>Write lesson details</li>
+                                <li>Add reading blocks</li>
+                                <li>Create practice questions</li>
+                                <li>Preview and save</li>
+                            </ol>
+                        </div>
+                    </aside>
+
+                    <section class="editor-workspace">
+                        <section class="editor-section">
+                            <div class="section-heading-row">
+                                <h2 class="section-title">
+                                    <i class="fas fa-book-open"></i> Reading Material Builder
+                                </h2>
+                                <p class="section-subtitle">Add blocks and see student-facing output instantly</p>
+                            </div>
+
+                            <div class="content-tools">
+                                <button class="tool-btn" onclick="addContentBlock('text')" title="Add formatted text with rich editing">
+                                    <i class="fas fa-paragraph"></i>
+                                    <span>Add Text</span>
+                                    <small>Rich text editor</small>
+                                </button>
+                                <button class="tool-btn" onclick="addContentBlock('heading')" title="Add section headings">
+                                    <i class="fas fa-heading"></i>
+                                    <span>Add Heading</span>
+                                    <small>Section titles</small>
+                                </button>
+                                <button class="tool-btn" onclick="addContentBlock('image')" title="Add images with captions">
+                                    <i class="fas fa-image"></i>
+                                    <span>Add Image</span>
+                                    <small>Visual content</small>
+                                </button>
+                                <button class="tool-btn" onclick="addContentBlock('table')" title="Create data tables">
+                                    <i class="fas fa-table"></i>
+                                    <span>Add Table</span>
+                                    <small>Organized data</small>
+                                </button>
+                                <button class="tool-btn" onclick="addContentBlock('list')" title="Create bulleted or numbered lists">
+                                    <i class="fas fa-list"></i>
+                                    <span>Add List</span>
+                                    <small>Step-by-step</small>
+                                </button>
+                                <button class="tool-btn" onclick="addContentBlock('code')" title="Add code examples with syntax highlighting">
+                                    <i class="fas fa-code"></i>
+                                    <span>Add Code</span>
+                                    <small>Code blocks</small>
+                                </button>
+                            </div>
+
+                            <div class="workspace-split">
+                                <section class="panel-left glass-panel">
+                                    <div class="content-header">
+                                        <h2 id="preview-stage-title">Stage Title Preview</h2>
+                                        <p>Student view</p>
+                                    </div>
+                                    <div id="learning-content-preview" class="content-body active-mode">
+                                        <div class="empty-state" id="content-empty-state">
+                                            <i class="fas fa-plus-circle"></i>
+                                            <h3>No content yet</h3>
+                                            <p>Use the builder buttons above to create your first reading block</p>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <section class="panel-right glass-panel">
+                                    <div class="content-management">
+                                        <h3>Content Blocks</h3>
+                                        <p>Drag your attention here to edit or remove each block.</p>
+                                        <div id="content-blocks" class="content-blocks-list"></div>
+                                    </div>
+                                </section>
+                            </div>
+                        </section>
+
+                        <section class="editor-section">
+                            <div class="section-heading-row">
+                                <h2 class="section-title">
+                                    <i class="fas fa-question-circle"></i> Practice Questions
+                                </h2>
+                                <p class="section-subtitle">Build quick checks and coding challenges</p>
+                            </div>
+                            <div class="question-tools">
+                                <button class="tool-btn" onclick="addQuestion('mcq')" title="Add multiple choice questions">
+                                    <i class="fas fa-list-check"></i>
+                                    <span>Add Multiple Choice</span>
+                                    <small>Quick assessment</small>
+                                </button>
+                                <button class="tool-btn" onclick="addQuestion('coding')" title="Add hands-on coding challenges">
+                                    <i class="fas fa-laptop-code"></i>
+                                    <span>Add Coding Question</span>
+                                    <small>Practical test</small>
+                                </button>
+                            </div>
+                            <div id="questions-container" class="questions-container">
+                                <div class="empty-state" id="questions-empty-state">
+                                    <i class="fas fa-question-circle"></i>
+                                    <h3>No questions yet</h3>
+                                    <p>Add your first question to complete this lesson setup</p>
+                                </div>
+                            </div>
+                        </section>
+                    </section>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div id="text-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add Text Block</h3>
+                <button class="close-btn" onclick="closeModal('text-modal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Text Content</label>
+                    <div id="text-editor" style="height: 200px;"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('text-modal')">Cancel</button>
+                <button class="btn btn-primary" onclick="saveTextBlock()">Add Text</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="heading-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add Heading</h3>
+                <button class="close-btn" onclick="closeModal('heading-modal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Heading Text</label>
+                    <input type="text" id="heading-text" placeholder="Enter heading text">
+                </div>
+                <div class="form-group">
+                    <label>Heading Size</label>
+                    <select id="heading-size">
+                        <option value="18px">Small</option>
+                        <option value="20px" selected>Medium</option>
+                        <option value="24px">Large</option>
+                        <option value="28px">Extra Large</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Text Color</label>
+                    <div class="color-picker-row">
+                        <input type="color" id="heading-color" value="#333333">
+                        <span id="heading-color-value" class="color-value">#333333</span>
+                        <span id="heading-color-preview" class="color-preview-swatch" style="background-color: #333333;"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('heading-modal')">Cancel</button>
+                <button class="btn btn-primary" onclick="saveHeadingBlock()">Add Heading</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="image-modal" class="modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h3>Add Image</h3>
+                <button class="close-btn" onclick="closeModal('image-modal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Drag & Drop Upload</label>
+                    <div id="image-upload-dropzone" class="image-upload-dropzone">
+                        <i class="fas fa-cloud-arrow-up"></i>
+                        <p>Drop image here, or</p>
+                        <button type="button" class="btn btn-secondary" onclick="document.getElementById('image-file-input').click()">
+                            <i class="fas fa-folder-open"></i> Choose File
+                        </button>
+                        <small>Saved as Base64 in JSON (PNG, JPG, WEBP, GIF)</small>
+                    </div>
+                    <input type="file" id="image-file-input" accept="image/*" hidden>
+                    <div id="image-upload-status" class="image-upload-status">No file selected</div>
+                </div>
+                <div class="form-group">
+                    <label>Alignment</label>
+                    <select id="image-alignment">
+                        <option value="left">Left</option>
+                        <option value="center" selected>Center</option>
+                        <option value="right">Right</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Caption</label>
+                    <input type="text" id="image-caption" placeholder="Image caption (optional)">
+                </div>
+                <div class="image-preview">
+                    <p>Preview</p>
+                    <img id="image-preview-img" src="" alt="" style="display: none;">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('image-modal')">Cancel</button>
+                <button class="btn btn-primary" onclick="saveImageBlock()">Add Image</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="table-modal" class="modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h3>Add Table</h3>
+                <button class="close-btn" onclick="closeModal('table-modal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Column Headers</label>
+                    <div class="table-builder-actions">
+                        <button class="btn btn-secondary" onclick="addTableColumn()">
+                            <i class="fas fa-plus"></i> Add Column
+                        </button>
+                        <button class="btn btn-secondary" onclick="addTableRow()">
+                            <i class="fas fa-plus"></i> Add Row
+                        </button>
+                    </div>
+                    <div id="table-headers-container" class="table-headers-builder">
+                        <div class="table-header-item">
+                            <input type="text" placeholder="Header 1" class="table-header-input">
+                            <button class="btn btn-danger table-header-remove" onclick="removeTableColumn(this)" title="Remove column">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
+                        <div class="table-header-item">
+                            <input type="text" placeholder="Header 2" class="table-header-input">
+                            <button class="btn btn-danger table-header-remove" onclick="removeTableColumn(this)" title="Remove column">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
+                        <div class="table-header-item">
+                            <input type="text" placeholder="Header 3" class="table-header-input">
+                            <button class="btn btn-danger table-header-remove" onclick="removeTableColumn(this)" title="Remove column">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Table Rows</label>
+                    <div id="table-rows-container" class="table-rows-builder">
+                        <div class="table-row">
+                            <div class="table-row-cells">
+                                <input type="text" placeholder="Cell 1" class="table-cell">
+                                <input type="text" placeholder="Cell 2" class="table-cell">
+                                <input type="text" placeholder="Cell 3" class="table-cell">
+                            </div>
+                            <button class="btn btn-danger" onclick="removeTableRow(this)">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Table Style</label>
+                    <div class="table-style-grid">
+                        <div class="form-group">
+                            <label for="table-text-align">Text Alignment</label>
+                            <select id="table-text-align">
+                                <option value="left">Left</option>
+                                <option value="center">Center</option>
+                                <option value="right">Right</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="table-font-style">Font Style</label>
+                            <select id="table-font-style">
+                                <option value="normal">Normal</option>
+                                <option value="italic">Italic</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="table-font-weight">Font Weight</label>
+                            <select id="table-font-weight">
+                                <option value="400">Regular</option>
+                                <option value="500">Medium</option>
+                                <option value="700">Bold</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="table-header-bg">Header Color</label>
+                            <div class="color-picker-row">
+                                <input type="color" id="table-header-bg" value="#334466">
+                                <span id="table-header-bg-value" class="color-value">#334466</span>
+                                <span id="table-header-bg-preview" class="color-preview-swatch" style="background-color: #334466;"></span>
+                            </div>
+                        </div>
+                        <div class="form-group table-options-group">
+                            <label>Style Options</label>
+                            <div class="table-options-row">
+                                <label class="table-check">
+                                    <input type="checkbox" id="table-zebra" checked>
+                                    <span>Enable zebra striping</span>
+                                </label>
+                                <label class="table-check">
+                                    <input type="checkbox" id="table-bordered" checked>
+                                    <span>Show borders</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('table-modal')">Cancel</button>
+                <button class="btn btn-primary" onclick="saveTableBlock()">Add Table</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="list-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add List</h3>
+                <button class="close-btn" onclick="closeModal('list-modal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>List Type</label>
+                    <select id="list-type">
+                        <option value="false">Unordered (bullets)</option>
+                        <option value="true">Ordered (numbered)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>List Items</label>
+                    <div id="list-items-container">
+                        <div class="list-item">
+                            <input type="text" placeholder="List item 1" class="list-item-input">
+                            <button class="btn btn-danger" onclick="removeListItem(this)">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary" onclick="addListItem()">
+                        <i class="fas fa-plus"></i> Add Item
+                    </button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('list-modal')">Cancel</button>
+                <button class="btn btn-primary" onclick="saveListBlock()">Add List</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="code-modal" class="modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h3>Add Code Block</h3>
+                <button class="close-btn" onclick="closeModal('code-modal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Code</label>
+                    <textarea id="code-content" placeholder="// Enter your code here" style="height: 200px;"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Language</label>
+                    <select id="code-language">
+                        <option value="javascript">JavaScript</option>
+                        <option value="python">Python</option>
+                        <option value="html">HTML</option>
+                        <option value="css">CSS</option>
+                        <option value="java">Java</option>
+                        <option value="cpp">C++</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('code-modal')">Cancel</button>
+                <button class="btn btn-primary" onclick="saveCodeBlock()">Add Code</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="mcq-modal" class="modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h3>Add Multiple Choice Question</h3>
+                <button class="close-btn" onclick="closeModal('mcq-modal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="mcq-modal-intro">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <p>Write the question, add options, then mark exactly one option as correct.</p>
+                </div>
+                <div class="form-group">
+                    <label>Question</label>
+                    <textarea id="mcq-question" placeholder="Enter your question..." style="height: 80px;"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Answer Options <span class="field-hint">Tap the left selector to mark the correct answer</span></label>
+                    <div id="mcq-options-container" class="mcq-options-stack">
+                        <div class="editor-mcq-option">
+                            <label class="correct-toggle" title="Mark this option as correct">
+                                <input type="radio" name="correct-answer" value="0" class="correct-answer-radio">
+                            </label>
+                            <div class="option-input-wrap">
+                                <span class="option-letter">A</span>
+                                <input type="text" placeholder="Option A" class="editor-option-text">
+                            </div>
+                            <button class="btn btn-danger option-delete-btn" onclick="removeMCQOption(this)" title="Delete option">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                        <div class="editor-mcq-option">
+                            <label class="correct-toggle" title="Mark this option as correct">
+                                <input type="radio" name="correct-answer" value="1" class="correct-answer-radio">
+                            </label>
+                            <div class="option-input-wrap">
+                                <span class="option-letter">B</span>
+                                <input type="text" placeholder="Option B" class="editor-option-text">
+                            </div>
+                            <button class="btn btn-danger option-delete-btn" onclick="removeMCQOption(this)" title="Delete option">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary" onclick="addMCQOption()">
+                        <i class="fas fa-plus"></i> Add Option
+                    </button>
+                </div>
+                <div class="form-group">
+                    <label>Explanation (optional)</label>
+                    <textarea id="mcq-explanation" placeholder="Explain why the correct answer is right..." style="height: 80px;"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('mcq-modal')">Cancel</button>
+                <button class="btn btn-primary" onclick="saveMCQQuestion()">Add Question</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="coding-modal" class="modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h3>Add Coding Question</h3>
+                <button class="close-btn" onclick="closeModal('coding-modal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Question</label>
+                    <textarea id="coding-question" placeholder="Enter your coding question..." style="height: 80px;"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Pre-code (starter code)</label>
+                    <textarea id="coding-precode" placeholder="// Starter code for students..." style="height: 120px;"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Solution Code</label>
+                    <textarea id="coding-solution" placeholder="// Correct solution..." style="height: 120px;"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Explanation (optional)</label>
+                    <textarea id="coding-explanation" placeholder="Explain the solution..." style="height: 80px;"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('coding-modal')">Cancel</button>
+                <button class="btn btn-primary" onclick="saveCodingQuestion()">Add Question</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.min.js"></script>
+    <script src="editor.js?v=4"></script>
+</body>
+</html>
