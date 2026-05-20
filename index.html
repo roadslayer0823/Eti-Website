@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eti Edu - Modern Learning Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Add a timer display for testing -->
+        <div id="testing-ui-wrapper"
+            style="position: fixed; top: 1rem; right: 1rem; display: flex; gap: 1rem; z-index: 9999;">
+            <div id="token-display-box"
+                style="display: none; background: rgba(0,0,0,0.8); color: #fff; padding: 0.8rem 1.2rem; border-radius: 8px; border: 1px solid var(--primary); font-family: 'Outfit', sans-serif; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+                <div style="font-size: 0.9rem;">Remaining Session: <span id="token-remaining"
+                        style="color: var(--primary); font-weight: bold; font-size: 1.1rem;">--</span></div>
+            </div>
+
+            <div id="session-timer-display"
+                style="display: none; background: rgba(0,0,0,0.8); color: #fff; padding: 0.8rem 1.2rem; border-radius: 8px; border: 1px solid var(--primary); font-family: 'Outfit', sans-serif; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+                <div style="font-size: 0.9rem;">Session Expires: <span id="time-remaining"
+                        style="font-weight: bold; font-size: 1.1rem;">--:--</span></div>
+            </div>
+        </div>
+
+        <!-- Landing Section -->
+        <section id="landing-section">
+            <div class="landing-header"
+                style="display: flex; justify-content: space-between; align-items: center; padding: 2rem 0; margin-bottom: 2rem;">
+                <div class="header-left">
+                    <h1 class="logo">ETI<span>AI</span></h1>
+                    <p class="subtitle">Select your learning path to begin your journey</p></br>
+                    <p class="demo-notice"
+                        style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.8); margin-top: 0.5rem;">This is a demo
+                        account for trial purposes. AI usage is limited </br> (tokens, storage, and simultaneous
+                        connections). Your content </br> and progress will be saved to your local device. For full access, please contact our sales:</p></br>
+                    <p class="demo-notice" style="font-size: 0.9rem; margin-top: 0.25rem;"><a
+                            href="https://www.eti.com.hk/zh_TW/contactus" target="_blank"
+                            style="color: var(--primary); text-decoration: none;">https://www.eti.com.hk/zh_TW/contactus</a>
+                    </p>
+                </div>
+                <button class="logout-btn" onclick="handleLogout()"
+                    style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); color: #fff; padding: 0.8rem 1.5rem; border-radius: 12px; cursor: pointer; transition: all 0.3s ease; font-weight: 500;">Sign
+                    Out</button>
+            </div>
+            <div class="glass-container">
+                <div class="card-grid">
+                    <div class="category-card" onclick="selectCategory('coding')">
+                        <div class="card-icon">💻</div>
+                        <h3>Coding</h3>
+                        <p>Master the language of the future with logic.</p>
+                    </div>
+                    <div class="category-card" onclick="selectCategory('chinese')">
+                        <div class="card-icon">📝</div>
+                        <h3>Teaching Assistant</h3>
+                        <p>AI-powered tool for creating lesson plans, handouts, and teaching materials for education
+                            purpose.</p>
+                    </div>
+                    <div class="category-card" onclick="selectCategory('english')">
+                        <div class="card-icon">🪄</div>
+                        <h3>English of Might and Magic</h3>
+                        <p>Immersive adventure-based English learning through story and choice.</p>
+                    </div>
+                    <div class="category-card" onclick="selectCategory('math')">
+                        <div class="card-icon">🧠</div>
+                        <h3>AI Navigator</h3>
+                        <p>Learn to use AI tools effectively for study, work, and daily tasks with prompt writing and
+                            safe AI practices.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Auth Section -->
+        <section id="auth-section">
+            <div class="glass-container">
+                <div class="auth-layout">
+                    <div class="intro-panel">
+                        <h2 id="intro-title">Welcome to ETI AI Portal</h2>
+                        <div id="intro-content" class="intro-text">
+                            <p>Global leader in educational technology. Join our platform to access advanced coding
+                                tools, immersive English learning, and more.</p>
+                            <p><strong>Available Paths:</strong><br>• Learning Python<br>• Interactive English<br>•
+                                Learning AI<br>• Teaching Material Creator</p>
+                        </div>
+                    </div>
+
+                    <div class="auth-form-wrapper">
+                        <div id="login-form">
+                            <h2>Welcome Back</h2>
+                            <p class="subtitle" style="margin-bottom: 2rem;">Sign in to your educator account</p>
+                            <div class="input-group" style="margin-bottom: 2rem;">
+                                <label for="login-email">Email Address</label>
+                                <input type="email" id="login-email" placeholder="name@school.com">
+                            </div>
+                            <button class="primary-btn" onclick="handleLogin()">Sign In</button>
+                            <p class="toggle-text">New here? <a href="#" onclick="toggleAuth(true)">Create an
+                                    account</a></p>
+                        </div>
+
+                        <div id="register-form" style="display: none;">
+                            <h2>Join ETI AI</h2>
+                            <p class="subtitle" style="margin-bottom: 2rem;">Create your educator account</p>
+                            <div class="form-grid">
+                                <div class="input-group">
+                                    <label for="reg-email">Email Address</label>
+                                    <input type="email" id="reg-email" placeholder="name@school.com">
+                                </div>
+                                <div class="input-group">
+                                    <label for="reg-phone">Phone Number</label>
+                                    <input type="tel" id="reg-phone" placeholder="+852 1234 5678">
+                                </div>
+                                <div class="input-group">
+                                    <label for="reg-school">School Name</label>
+                                    <input type="text" id="reg-school" placeholder="School Name">
+                                </div>
+                                <div class="input-group">
+                                    <label for="reg-teacher">Teacher Name</label>
+                                    <input type="text" id="reg-teacher" placeholder="Full Name">
+                                </div>
+                                <div class="input-group">
+                                    <label for="reg-subject">Handled Subject</label>
+                                    <input type="text" id="reg-subject" placeholder="E.g. Computer Science">
+                                </div>
+                                <div class="input-group">
+                                    <label for="reg-interest">Interested Field</label>
+                                    <input type="text" id="reg-interest" placeholder="E.g. AI, Robotics">
+                                </div>
+                            </div>
+                            <button class="primary-btn" onclick="handleRegister()">Complete Registration</button>
+                            <p class="toggle-text">Already have an account? <a href="#" onclick="toggleAuth(false)">Sign
+                                    in instead</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard-section">
+            <div class="glass-container">
+                <div class="dashboard-header">
+                    <h1 class="logo" id="dashboard-title">My <span>Learning</span></h1>
+                    <button class="logout-btn" onclick="handleLogout()">Sign Out</button>
+                </div>
+                <div class="dashboard-content">
+                    <h2 id="target-page-message" style="font-size: 2.5rem; margin-bottom: 1rem;"></h2>
+                    <p class="subtitle">This is the demo phase. All your course content for <span id="category-name"
+                            style="color: var(--primary); font-weight: 700; text-transform: uppercase;"></span> will
+                        appear here soon.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js?v=1.2"></script>
+</body>
+
+</html>

@@ -1,0 +1,619 @@
+{
+  "stage-1": {
+    "id": "stage-1",
+    "title": "The Awakening",
+    "description": "",
+    "difficulty": 1,
+    "readingMaterial": [
+      {
+        "type": "text",
+        "text": "Every great journey starts with a single word. In Python, the print() function is how your program \"speaks\" to the world.\n",
+        "html": "<p>Every great journey starts with a single word. In Python, the <strong>print()</strong> function is how your program \"speaks\" to the world.</p>",
+        "style": {
+          "fontSize": "16px",
+          "lineHeight": "1.6"
+        }
+      },
+      {
+        "type": "heading",
+        "text": "1. How it Works",
+        "style": {
+          "fontSize": "20px",
+          "color": "#333333",
+          "marginBottom": "16px"
+        }
+      },
+      {
+        "type": "text",
+        "text": "To make Python say something, you put your message inside the parentheses () and wrap text in quotes (\"\").\n",
+        "html": "<p>To make Python say something, you put your message inside the parentheses <strong>()</strong> and wrap text in <strong>quotes</strong> <strong>(\"\")</strong>.</p>",
+        "style": {
+          "fontSize": "16px",
+          "lineHeight": "1.6"
+        }
+      },
+      {
+        "type": "code",
+        "code": "\n# This makes the computer say Hello!\n  print(\"Hello, Voyager!\")",
+        "language": "python"
+      },
+      {
+        "type": "heading",
+        "text": "2. Why use Quotes?",
+        "style": {
+          "fontSize": "20px",
+          "color": "#333333",
+          "marginBottom": "16px"
+        }
+      },
+      {
+        "type": "text",
+        "text": "Think of quotes as a \"container\" for text (which programmers call a String). Without them, Python thinks you are looking for a secret variable name instead of just reading the words.\n",
+        "html": "<p>Think of quotes as a \"container\" for text (which programmers call a <strong>String</strong>). Without them, Python thinks you are looking for a secret variable name instead of just reading the words.</p>",
+        "style": {
+          "fontSize": "16px",
+          "lineHeight": "1.6"
+        }
+      },
+      {
+        "type": "list",
+        "ordered": false,
+        "items": [
+          "Correct: print(\"Magic\") -> Output: Magic",
+          "Incorrect: print(Magic) -> Error! (The computer is looking for a variable named Magic)"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "3. Printing Numbers",
+        "style": {
+          "fontSize": "20px",
+          "color": "#333333",
+          "marginBottom": "16px"
+        }
+      },
+      {
+        "type": "text",
+        "text": "Numbers don't need quotes! Python treats them as mathematical values automatically.\n",
+        "html": "<p>Numbers don't need quotes! Python treats them as mathematical values automatically.</p>",
+        "style": {
+          "fontSize": "16px",
+          "lineHeight": "1.6"
+        }
+      },
+      {
+        "type": "code",
+        "code": "\nprint(100) # Output: 100",
+        "language": "python"
+      }
+    ],
+    "questions": [
+      {
+        "type": "mcq",
+        "question": "What will happen if you run the following code? \nprint(Hello)\n",
+        "options": [
+          "It prints: Hello",
+          "It prints: \"Hello\"",
+          "It causes an Error because there are no quotes.",
+          "It prints nothing."
+        ],
+        "correctAnswer": 2,
+        "explanation": ""
+      }
+    ],
+    "createdAt": "2026-04-02T07:49:41.141Z",
+    "updatedAt": "2026-04-06T03:29:22.672Z",
+    "updatedBy": "kahhin02@starsplash.com.my"
+  },
+  "stage-2": {
+    "id": "stage-2",
+    "title": "First Words",
+    "description": "",
+    "difficulty": 1,
+    "readingMaterial": [
+      {
+        "type": "text",
+        "text": "The Quest: To awaken the system, you must command the computer to speak. Your task is to use the print() function to display a classic greeting for all coders.\n",
+        "html": "<p><strong>The Quest:</strong> To awaken the system, you must command the computer to speak. Your task is to use the print() function to display a classic greeting for all coders.</p>",
+        "style": {
+          "fontSize": "16px",
+          "lineHeight": "1.6"
+        }
+      },
+      {
+        "type": "text",
+        "text": "Instructions:\n",
+        "html": "<p><strong>Instructions:</strong></p>",
+        "style": {
+          "fontSize": "16px",
+          "lineHeight": "1.6"
+        }
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          "Use the print() function.",
+          "Inside the parentheses, type the phrase \"Hello World\" (don't forget the double quotes!)."
+        ]
+      },
+      {
+        "type": "text",
+        "text": "Expected Output\n",
+        "html": "<p><strong>Expected Output</strong></p>",
+        "style": {
+          "fontSize": "16px",
+          "lineHeight": "1.6"
+        }
+      },
+      {
+        "type": "text",
+        "text": "Hello World\n",
+        "html": "<p>Hello World</p>",
+        "style": {
+          "fontSize": "16px",
+          "lineHeight": "1.6"
+        }
+      }
+    ],
+    "questions": [
+      {
+        "type": "coding",
+        "question": "The Quest: To awaken the system, you must command the computer to speak. Your task is to use the print() function to display a classic greeting for all coders.\nInstructions:\nUse the print() function.\nInside the parentheses, type the phrase \"Hello World\" (don't forget the double quotes!).\n",
+        "preCode": "# Type your code below to print the word Hello World",
+        "solution": "print(\"Hello World\")",
+        "explanation": ""
+      }
+    ],
+    "createdAt": "2026-04-02T08:27:55.011Z",
+    "updatedAt": "2026-04-02T09:18:43.493Z",
+    "updatedBy": "kahhin02@starsplash.com.my"
+  },
+  "stage-3": {
+    "id": "stage-3",
+    "title": "The Memory Jar",
+    "description": "",
+    "difficulty": 1,
+    "readingMaterial": [
+      {
+        "type": "text",
+        "text": "In Python, a Variable is like a labeled jar. You can put a value (like a word or a number) inside the jar and give it a name so you can find it later.\n",
+        "html": "<p>In Python, a <strong>Variable</strong> is like a labeled jar. You can put a value (like a word or a number) inside the jar and give it a name so you can find it later.</p>",
+        "style": {
+          "fontSize": "16px",
+          "lineHeight": "1.6"
+        }
+      },
+      {
+        "type": "heading",
+        "text": "1. How to Create a Variable",
+        "style": {
+          "fontSize": "20px",
+          "color": "#333333",
+          "marginBottom": "16px"
+        }
+      },
+      {
+        "type": "text",
+        "text": "You use the = sign. This isn't math; it’s an assignment. It means \"Take the thing on the right and put it in the jar on the left.\"\n",
+        "html": "<p>You use the <strong>=</strong> sign. This isn't math; it’s an <strong>assignment</strong>. It means \"Take the thing on the right and put it in the jar on the left.\"</p>",
+        "style": {
+          "fontSize": "16px",
+          "lineHeight": "1.6"
+        }
+      },
+      {
+        "type": "code",
+        "code": "\n# Create a jar named 'hero' and put \"Link\" inside\nhero = \"Link\"",
+        "language": "python"
+      },
+      {
+        "type": "heading",
+        "text": "2. Using the Jar",
+        "style": {
+          "fontSize": "20px",
+          "color": "#333333",
+          "marginBottom": "16px"
+        }
+      },
+      {
+        "type": "text",
+        "text": "Once you’ve stored a value, you can use the name of the jar instead of the value itself!\n",
+        "html": "<p>Once you’ve stored a value, you can use the name of the jar instead of the value itself!</p>",
+        "style": {
+          "fontSize": "16px",
+          "lineHeight": "1.6"
+        }
+      },
+      {
+        "type": "code",
+        "code": "\n# This will print \"Link\"\nprint(hero)",
+        "language": "python"
+      },
+      {
+        "type": "heading",
+        "text": "3. The Golden Rules of Naming",
+        "style": {
+          "fontSize": "20px",
+          "color": "#333333",
+          "marginBottom": "16px"
+        }
+      },
+      {
+        "type": "list",
+        "ordered": false,
+        "items": [
+          "Names must be one word: No spaces! (Use player_score, not player score).",
+          "No quotes for names: Only the value inside gets quotes if it's text.",
+          "player = \"Zelda\" (Correct)",
+          "\"player\" = \"Zelda\" (Error!)"
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "type": "mcq",
+        "question": "Look at the following code:\n\npower = 9000\nprint(power)",
+        "options": [
+          "power",
+          "9000",
+          "\"9000\"",
+          "It will cause an error."
+        ],
+        "correctAnswer": 1,
+        "explanation": ""
+      }
+    ],
+    "createdAt": "2026-04-02T09:39:05.198Z",
+    "updatedAt": "2026-04-06T03:29:52.518Z",
+    "updatedBy": "kahhin02@starsplash.com.my"
+  },
+  "stage-4": {
+    "id": "stage-4",
+    "title": "Labeling Magic",
+    "description": "",
+    "difficulty": 1,
+    "readingMaterial": [
+      {
+        "type": "text",
+        "text": "The Quest: You have found a powerful artifact! To keep it in your inventory, you must assign its name to a variable.\n",
+        "html": "<p><strong>The Quest:</strong> You have found a powerful artifact! To keep it in your inventory, you must assign its name to a variable.</p>",
+        "style": {
+          "fontSize": "16px",
+          "lineHeight": "1.6"
+        }
+      },
+      {
+        "type": "text",
+        "text": "Instructions:\n",
+        "html": "<p><strong>Instructions:</strong></p>",
+        "style": {
+          "fontSize": "16px",
+          "lineHeight": "1.6"
+        }
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          "Create a variable named artifact.",
+          "Assign the text \"Golden Compass\" to it (Remember the quotes!).",
+          "Use the print() function to display your artifact variable."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "type": "coding",
+        "question": "t",
+        "preCode": "# Step 1:  Assign \"Golden Compass\" to the variable artifact\n # Step 2: Print the artifact variable\n# Don't use quotes inside the print()! Use the variable name.\nartifact = ?\nprint(?)",
+        "solution": "artifact = \"Golden Compass\"\nprint(artifact)",
+        "explanation": ""
+      }
+    ],
+    "createdAt": "2026-04-02T10:03:45.769Z",
+    "updatedAt": "2026-04-02T10:06:08.698Z",
+    "updatedBy": "kahhin02@starsplash.com.my"
+  },
+  "stage-5": {
+    "id": "stage-5",
+    "title": "The Scroll & The Stone",
+    "description": "",
+    "difficulty": 1,
+    "readingMaterial": [
+      {
+        "type": "text",
+        "text": "Not all data is created equal. Imagine trying to multiply the word \"Apple\" by the number 5—it doesn't make sense! Python uses Data Types to keep things organized.\n",
+        "html": "<p>Not all data is created equal. Imagine trying to multiply the word \"Apple\" by the number 5—it doesn't make sense! Python uses <strong>Data Types</strong> to keep things organized.</p>",
+        "style": {
+          "fontSize": "16px",
+          "lineHeight": "1.6"
+        }
+      },
+      {
+        "type": "heading",
+        "text": "1. The Scroll (String)",
+        "style": {
+          "fontSize": "20px",
+          "color": "#333333",
+          "marginBottom": "16px"
+        }
+      },
+      {
+        "type": "text",
+        "text": "Any text wrapped in quotes (\" \") is a String.\n",
+        "html": "<p>Any text wrapped in quotes (\" \") is a <strong>String</strong>.</p>",
+        "style": {
+          "fontSize": "16px",
+          "lineHeight": "1.6"
+        }
+      },
+      {
+        "type": "list",
+        "ordered": false,
+        "items": [
+          "Example: \"Level 1\", \"Dragon\", \"100\" (Yes, even a number in quotes is treated like text!)",
+          "Rule: You can't do math with Strings."
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "2. The Stone (Integer)",
+        "style": {
+          "fontSize": "20px",
+          "color": "#333333",
+          "marginBottom": "16px"
+        }
+      },
+      {
+        "type": "text",
+        "text": "A whole number without quotes is an Integer.\n",
+        "html": "<p>A whole number without quotes is an <strong>Integer</strong>.</p>",
+        "style": {
+          "fontSize": "16px",
+          "lineHeight": "1.6"
+        }
+      },
+      {
+        "type": "list",
+        "ordered": false,
+        "items": [
+          "Example: 5, 100, -20",
+          "Rule: You can perform math (like addition or subtraction) on these."
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "3. Why it Matters",
+        "style": {
+          "fontSize": "20px",
+          "color": "#333333",
+          "marginBottom": "16px"
+        }
+      },
+      {
+        "type": "text",
+        "text": "Look what happens when we use the + sign:\n",
+        "html": "<p>Look what happens when we use the + sign:</p>",
+        "style": {
+          "fontSize": "16px",
+          "lineHeight": "1.6"
+        }
+      },
+      {
+        "type": "list",
+        "ordered": false,
+        "items": [
+          "String + String: \"10\" + \"10\" becomes \"1010\" (It just glues them together!)",
+          "Integer + Integer: 10 + 10 becomes 20 (Actual math!)"
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "type": "mcq",
+        "question": "Which of the following is an Integer?",
+        "options": [
+          "\"42\"",
+          "Hello",
+          "42",
+          "\"High Score\""
+        ],
+        "correctAnswer": 2,
+        "explanation": ""
+      }
+    ],
+    "createdAt": "2026-04-02T10:40:37.078Z",
+    "updatedAt": "2026-04-02T10:40:37.217Z",
+    "updatedBy": "kahhin@starsplash.com.my"
+  },
+  "stage-6": {
+    "id": "stage-6",
+    "title": "Type Transformation",
+    "description": "",
+    "difficulty": 1,
+    "readingMaterial": [
+      {
+        "type": "text",
+        "text": "The Quest: A fellow alchemist left you a message, but they used the wrong \"container\"! They stored a player's age as a String (text), but to enter the Forbidden Library, the age must be an Integer (number) so the computer can calculate if you're old enough.\n",
+        "html": "<p><strong>The Quest:</strong> A fellow alchemist left you a message, but they used the wrong \"container\"! They stored a player's age as a <strong>String</strong> (text), but to enter the Forbidden Library, the age must be an <strong>Integer</strong> (number) so the computer can calculate if you're old enough.</p>",
+        "style": {
+          "fontSize": "16px",
+          "lineHeight": "1.6"
+        }
+      },
+      {
+        "type": "text",
+        "text": "Instructions:\n",
+        "html": "<p><strong>Instructions:</strong></p>",
+        "style": {
+          "fontSize": "16px",
+          "lineHeight": "1.6"
+        }
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          "Look at the variable age_text—it is currently a String because of the quotes.",
+          "Create a new variable called age_number.",
+          "Assign the value 15 to age_number, but make sure it is an Integer (no quotes!)."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "type": "coding",
+        "question": "t",
+        "preCode": "# This is a String (Text)\nage_text = \"15\"\n\n# Step 1: Create age_number and assign it the value 15 as an Integer\nage_number = ?\n  \n # Don't change the line below\nprint(f\"Access Granted! Age verified as: {age_number}\")",
+        "solution": "age_number = 15\nprint(f\"Access Granted! Age verified as: {age_number}\")",
+        "explanation": ""
+      }
+    ],
+    "createdAt": "2026-04-02T10:47:16.735Z",
+    "updatedAt": "2026-04-02T10:47:16.866Z",
+    "updatedBy": "kahhin@starsplash.com.my"
+  },
+  "stage-7": {
+    "id": "stage-7",
+    "title": "The Math Forge",
+    "description": "",
+    "difficulty": 1,
+    "readingMaterial": [
+      {
+        "type": "text",
+        "text": "In Python, you can perform calculations just like you would on a calculator. These symbols are called Operators.\n",
+        "html": "<p>In Python, you can perform calculations just like you would on a calculator. These symbols are called <strong>Operators</strong>.</p>",
+        "style": {
+          "fontSize": "16px",
+          "lineHeight": "1.6"
+        }
+      },
+      {
+        "type": "heading",
+        "text": "1. The Basic Four",
+        "style": {
+          "fontSize": "20px",
+          "color": "#333333",
+          "marginBottom": "16px"
+        }
+      },
+      {
+        "type": "list",
+        "ordered": false,
+        "items": [
+          "Addition (+): 10 + 5 becomes 15",
+          "Subtraction (-): 20 - 5 becomes 15",
+          "Multiplication (*): 3 * 5 becomes 15 (We use the asterisk, not an 'x'!)",
+          "Division (/): 30 / 2 becomes 15.0"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "2. Using Variables in Math",
+        "style": {
+          "fontSize": "20px",
+          "color": "#333333",
+          "marginBottom": "16px"
+        }
+      },
+      {
+        "type": "text",
+        "text": "The real power comes when you use Variables instead of just raw numbers. Python will look inside the \"jar,\" grab the value, and do the math for you.\n",
+        "html": "<p>The real power comes when you use <strong>Variables</strong> instead of just raw numbers. Python will look inside the \"jar,\" grab the value, and do the math for you.</p>",
+        "style": {
+          "fontSize": "16px",
+          "lineHeight": "1.6"
+        }
+      },
+      {
+        "type": "code",
+        "code": "\napples = 5\nprice = 2\n\n# This will calculate 5 * 2\ntotal_cost = apples * price\n\nprint(total_cost) # Output: 10",
+        "language": "python"
+      },
+      {
+        "type": "heading",
+        "text": "3. Order of Operations",
+        "style": {
+          "fontSize": "20px",
+          "color": "#333333",
+          "marginBottom": "16px"
+        }
+      },
+      {
+        "type": "text",
+        "text": "Python follows standard math rules (PEMDAS). It does multiplication and division before addition and subtraction unless you use parentheses ().\n",
+        "html": "<p>Python follows standard math rules (PEMDAS). It does multiplication and division <em>before</em> addition and subtraction unless you use <strong>parentheses ()</strong>.</p>",
+        "style": {
+          "fontSize": "16px",
+          "lineHeight": "1.6"
+        }
+      }
+    ],
+    "questions": [
+      {
+        "type": "mcq",
+        "question": "Look at the following code:\nscore = 10\nbonus = 5\nfinal_score = score + bonus * 2\n\nWhat is the value of final_score?",
+        "options": [
+          "30",
+          "20",
+          "25",
+          "15"
+        ],
+        "correctAnswer": 1,
+        "explanation": ""
+      }
+    ],
+    "createdAt": "2026-04-02T10:55:18.479Z",
+    "updatedAt": "2026-04-02T10:55:18.603Z",
+    "updatedBy": "kahhin@starsplash.com.my"
+  },
+  "stage-8": {
+    "id": "stage-8",
+    "title": "Alchemy Lab",
+    "description": "",
+    "difficulty": 1,
+    "readingMaterial": [
+      {
+        "type": "text",
+        "text": "The Quest: Your character has taken some damage in a duel! You need to calculate your Final Health by taking your starting health and subtracting the damage received.\n",
+        "html": "<p><strong>The Quest:</strong> Your character has taken some damage in a duel! You need to calculate your <strong>Final Health</strong> by taking your starting health and subtracting the damage received.</p>",
+        "style": {
+          "fontSize": "16px",
+          "lineHeight": "1.6"
+        }
+      },
+      {
+        "type": "text",
+        "text": "Instructions:\n",
+        "html": "<p><strong>Instructions:</strong></p>",
+        "style": {
+          "fontSize": "16px",
+          "lineHeight": "1.6"
+        }
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          "You are given a variable current_health set to 100.",
+          "You are given a variable damage set to 30.",
+          "Create a new variable called final_health.",
+          "Set final_health to be the result of current_health minus damage."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "type": "coding",
+        "question": "t",
+        "preCode": "current_health = 100\ndamage = 30\n\n# Step 1: Calculate the final health\nfinal_health = ?\n  \n# Don't change the line below\nprint(f\"Final Health: {final_health}\")",
+        "solution": "current_health = 100\ndamage = 30\nfinal_health = current_health - damage\nprint(f\"Final Health: {final_health}\")",
+        "explanation": ""
+      }
+    ],
+    "createdAt": "2026-04-06T02:16:46.529Z",
+    "updatedAt": "2026-04-06T02:16:46.664Z",
+    "updatedBy": "kahhin02@starsplash.com.my"
+  }
+}
