@@ -7,17 +7,12 @@ A comprehensive educational portal offering multiple interactive learning paths,
 The repository is organized into a main portal and several distinct sub-applications:
 
 - **Root Directory (`/`)**: Contains the main landing page (`index.html`, `style.css`, `script.js`) that serves as the entry point and portal for users to select their learning paths.
-- **`server/`**: The backend services (Node.js/Express). It contains multiple micro-services:
-  - `ai.js` (Port 3001): Handles AI chat proxying (Gemini, DeepSeek) and PDF parsing.
-  - `auth.js` (Port 3004): Handles user authentication (registration, login) via JSON storage.
-  - `coding.js` & `ai-course.js`: Additional backend handlers for specific learning paths.
 - **`ai-teaching-assistant---香港老師高效教學助理/`**: A Vite + React + TypeScript frontend application designed for teachers to generate lesson plans and materials.
 - **`english-of-might-and-magic/`**: A Vite + React + TypeScript frontend application offering an immersive, adventure-based interactive English learning experience.
 - **`Educational-AI/`**: A Vanilla JS application focusing on AI prompt engineering and usage.
 - **`Educational-Coding-Game-Website/`**: A Vanilla JS application featuring a coding editor for educational logic games.
 
 ## 🛠️ Prerequisites
-
 - **Node.js** (v18+ recommended)
 - **npm** or **yarn**
 - API Keys for AI Services (Google Gemini / DeepSeek)
