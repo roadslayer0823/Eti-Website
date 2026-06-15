@@ -2,6 +2,19 @@
 
 A comprehensive educational portal offering multiple interactive learning paths, including AI navigation, interactive English story-telling, coding education, and an AI-powered teaching assistant.
 
+[![Portfolio](https://img.shields.io/badge/Portfolio-Live_Demo-00C5FF?style=for-the-badge&logo=react&logoColor=white)](https://roadslayer0823.github.io/2026-portfolio-website/)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
+
+---
+
+## 🌐 Live Demonstration
+
+This system has been fully integrated and deployed into my centralized production portfolio. You can interact with the live build, review architecture nodes, and explore interactive modules directly via the link below:
+
+🔗 **[Access the Interactive Live Demo Here](https://roadslayer0823.github.io/2026-portfolio-website/)**
+
+---
+
 ## 📂 Project Structure
 
 The repository is organized into a main portal and several distinct sub-applications:
