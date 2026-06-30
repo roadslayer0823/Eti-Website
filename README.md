@@ -10,7 +10,7 @@ A comprehensive educational portal offering multiple interactive learning paths,
 
 This system has been fully integrated and deployed into my centralized production portfolio. You can interact with the live build, review architecture nodes, and explore interactive modules directly via the link below:
 
-🔗 **[Access the Interactive Live Demo Here](https://roadslayer0823.github.io/2026-portfolio-website/)**
+🔗 **[Access the Interactive Live Demo Here](https://portal.eti.com.hk/landing/)**
 
 ---
 
